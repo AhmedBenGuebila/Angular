@@ -1,0 +1,45 @@
+<h1>{{title}}</h1>
+<form class="col-md-3">
+<input type="number" name="p" [(ngModel)]="maxPrice"  class="form-control col-md-6" placeholder=" (☞ﾟヮﾟ)☞    Max Price    ☜( ﾟヮﾟ☜) ">
+</form>
+
+------->{{maxPrice}}<-------------
+
+<div class="row">
+
+
+
+
+  <div class="col-md-3" *ngFor="let product of list" >
+
+
+    <div class="card" style="width: 18rem;" *ngIf="product.price<=maxPrice || maxPrice==null">
+      <img src="{{product.picture}}"
+        class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <p class="card-text" >
+          price: {{product.price}} $
+          <br>
+          description: <br>
+          {{product.description}}
+           <br>
+          {{ product.nbrLike}}  💖
+          <br>
+          quantité {{ product.quantity}}
+
+        </p>
+        <button class="btn btn-sm btn-primary"  (click)="incrementLike(product)"> ♥ Like </button>
+        <button class="btn btn-sm btn-success"  [hidden]="product.quantity<1" id="buy" (click)="decrementquantity(product)"> Buy </button>
+
+
+
+        <span class="btn btn-sm btn-warning" *ngIf="product.quantity<1" id="buy">  out of stock!          </span>
+
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
